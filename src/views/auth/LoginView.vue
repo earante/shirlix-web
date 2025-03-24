@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/components/layout/AppLayout.vue'
 import { useDisplay } from 'vuetify'
+import LoginForm from '@/components/auth/LoginForm.vue'
 
 const { mobile } = useDisplay()
 </script>
@@ -23,16 +24,7 @@ const { mobile } = useDisplay()
 
             <v-card-text class="bg-surface-light pt-4 mx-auto" width="500px">
               <v-divider class="my-5"></v-divider>
-              <v-form fast-fail @submit.prevent>
-                <v-text-field variant="outlined" label="Email" type="email"></v-text-field>
-
-                <v-text-field variant="outlined" label="Password" type="password"></v-text-field>
-
-                <v-btn class="mt-2" color="primary" type="submit" prepend-icon="mdi-login" block
-                  >Login</v-btn
-                >
-              </v-form>
-
+              <LoginForm></LoginForm>
               <v-divider class="my-5"></v-divider>
               <h5 class="text-center">
                 Don't have account?
