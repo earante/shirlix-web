@@ -2,6 +2,7 @@
 import AppLayout from '@/components/layout/AppLayout.vue'
 import { useDisplay } from 'vuetify'
 import RegisterForm from '@/components/auth/RegisterForm.vue'
+import myLogo from '@/assets/images/logo.png'
 
 const { mobile } = useDisplay()
 </script>
@@ -13,7 +14,12 @@ const { mobile } = useDisplay()
         <v-col cols="12" md="6" class="mx-auto pt-10">
           <v-card class="mx-auto" elevation="24">
             <v-card-title class="text-center">
-              <v-img class="mx-auto" src="/public/logo.png" :width="mobile ? '75%' : '25%'"></v-img>
+              <v-img
+                class="mx-auto"
+                :src="myLogo"
+                alt="logo.png"
+                :width="mobile ? '75%' : '25%'"
+              ></v-img>
               <h3 class="font-weight-black">Shirlix Meatshop</h3>
               <p>Sign up</p>
             </v-card-title>
