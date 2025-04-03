@@ -7,5 +7,8 @@
     <v-btn class="mt-2" color="deep-orange" type="submit" prepend-icon="mdi-login" block
       >Login</v-btn
     >
+    <v-btn class="mt-2" color="deep-orange" type="submit" prepend-icon="mdi-login" block
+      >Login</v-btn
+    >
   </v-form>
 </template>
