@@ -1,7 +1,6 @@
 <template>
   <v-form fast-fail @submit.prevent>
     <v-text-field variant="outlined" label="Email" type="email"></v-text-field>
-    <v-text-field variant="outlined" label="Email" type="email"></v-text-field>
 
     <v-text-field variant="outlined" label="Password" type="password"></v-text-field>
 
