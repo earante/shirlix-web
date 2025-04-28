@@ -14,6 +14,14 @@ const isPasswordVisible = ref(false)
       outlined
       dense
     ></v-text-field>
+    <v-text-field
+      density="compact"
+      placeholder="Email address"
+      prepend-inner-icon="mdi-email-outline"
+      label="Email"
+      outlined
+      dense
+    ></v-text-field>
 
     <v-text-field
       :append-inner-icon="isPasswordVisible ? 'mdi-eye-off' : 'mdi-eye'"
