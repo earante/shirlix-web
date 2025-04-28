@@ -10,11 +10,18 @@ const { mobile } = useDisplay()
 <template>
   <AppLayout>
     <template #content>
+<<<<<<< HEAD
       <v-container fluid>
         <v-row>
           <v-col cols="12" md="8" class="bg-surface-light h-screen" v-if="!mobile"> </v-col>
           <v-col cols="12" md="4" :class="mobile ? '' : 'pt-16'">
             <v-card class="mx-auto" elevation="24" max-width="600">
+=======
+      <v-container fuid>
+        <v-row>
+          <v-col cols="12" md="6" class="mx-auto pt-10">
+            <v-card class="mx-auto" elevation="24">
+>>>>>>> 30a24e3 (fix: remove v-container on AppLayout, in AppView and RegisterView add v-container fluid)
               <v-card-title class="text-center">
                 <v-img
                   class="mx-auto"
@@ -23,10 +30,17 @@ const { mobile } = useDisplay()
                   :width="mobile ? '75%' : '25%'"
                 ></v-img>
                 <h3 class="font-weight-black">Shirlix Meatshop</h3>
+<<<<<<< HEAD
                 <p class="font-weight-bold">Login</p>
               </v-card-title>
 
               <v-card-text class="pt-4">
+=======
+                <p>Login</p>
+              </v-card-title>
+
+              <v-card-text class="bg-surface-light pt-4 mx-auto" width="500px">
+>>>>>>> 30a24e3 (fix: remove v-container on AppLayout, in AppView and RegisterView add v-container fluid)
                 <v-divider class="my-5"></v-divider>
                 <LoginForm></LoginForm>
                 <v-divider class="my-5"></v-divider>
