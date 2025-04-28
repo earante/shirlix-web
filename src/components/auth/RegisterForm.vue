@@ -1,29 +1,60 @@
 <script setup>
 import { ref } from 'vue'
+import {
+  requiredValidator,
+  emailValidator,
+  passwordValidator,
+  confirmedValidator,
+} from '@/utils/validators'
 
 const isPasswordVisible = ref(false)
 const isConfirmPasswordVisible = ref(false)
+const refVForm = ref()
+
+const formDataDefault = {
+  firstname: '',
+  lastname: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+}
+
+const formData = ref({
+  ...formDataDefault,
+})
+
+const onSubmit = () => {
+  alert(formData.value.email)
+}
+
+const onFormSubmit = () => {
+  refVForm.value?.validate().then(({ valid }) => {
+    if (valid) {
+      onSubmit()
+    }
+  })
+}
 </script>
 
 <template>
-  <v-form fast-fail @submit.prevent>
+  <v-form ref="refVForm" @submit.prevent="onFormSubmit">
     <v-row>
       <v-col cols="12" sm="6">
         <v-text-field
-          v-model="firstname"
           label="Firstname"
           outlined
           dense
-          :rules="nameRules"
+          :rules="[requiredValidator]"
+          v-model="formData.firstname"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="6">
         <v-text-field
-          v-model="lastname"
+          v-model="formData.lastname"
           label="Lastname"
           outlined
           dense
-          :rules="nameRules"
+          :rules="[requiredValidator]"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -36,6 +67,8 @@ const isConfirmPasswordVisible = ref(false)
       prepend-inner-icon="mdi-email-outline"
       label="Email"
       type="email"
+      :rules="[requiredValidator, emailValidator]"
+      v-model="formData.email"
     ></v-text-field>
 
     <v-row>
@@ -50,6 +83,8 @@ const isConfirmPasswordVisible = ref(false)
           outlined
           dense
           @click:append-inner="isPasswordVisible = !isPasswordVisible"
+          :rules="[requiredValidator, passwordValidator]"
+          v-model="formData.password"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="6">
@@ -63,6 +98,11 @@ const isConfirmPasswordVisible = ref(false)
           outlined
           dense
           @click:append-inner="isConfirmPasswordVisible = !isConfirmPasswordVisible"
+          :rules="[
+            requiredValidator,
+            confirmedValidator(formData.password_confirmation, formData.password),
+          ]"
+          v-model="formData.password_confirmation"
         ></v-text-field>
       </v-col>
     </v-row>
