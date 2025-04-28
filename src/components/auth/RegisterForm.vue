@@ -37,15 +37,6 @@ const isConfirmPasswordVisible = ref(false)
       label="Email"
       type="email"
     ></v-text-field>
-    <v-text-field
-      density="compact"
-      placeholder="Email address"
-      outlined
-      dense
-      prepend-inner-icon="mdi-email-outline"
-      label="Email"
-      type="email"
-    ></v-text-field>
 
     <v-row>
       <v-col cols="12" sm="6">
