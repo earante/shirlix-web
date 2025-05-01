@@ -6,6 +6,8 @@ import {
   passwordValidator,
   confirmedValidator,
 } from '@/utils/validators'
+import { supabase, formActionDefault } from '@/utils/supabase'
+import AlertNotification from '@/components/common/AlertNotification.vue'
 
 const isPasswordVisible = ref(false)
 const isConfirmPasswordVisible = ref(false)
@@ -19,12 +21,39 @@ const formDataDefault = {
   password_confirmation: '',
 }
 
+const formAction = ref({
+  ...formActionDefault,
+})
+
 const formData = ref({
   ...formDataDefault,
 })
 
-const onSubmit = () => {
-  alert(formData.value.email)
+const onSubmit = async () => {
+  formAction.value = { ...formActionDefault }
+  formAction.value.formProccess = true
+
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.value.email,
+    password: formData.value.password,
+    options: {
+      data: {
+        firstname: formData.value.firstname,
+        lastname: formData.value.lastname,
+      },
+    },
+  })
+  if (error) {
+    console.log(error)
+    formAction.value.formErrorMessage = error.message
+    formAction.value.formStatus = error.status
+  } else if (data) {
+    console.log(data)
+    formAction.value.formSuccessMessage = 'Successfully Registered Account'
+    refVForm.value?.reset()
+  }
+
+  formAction.value.formProccess = false
 }
 
 const onFormSubmit = () => {
@@ -37,7 +66,13 @@ const onFormSubmit = () => {
 </script>
 
 <template>
-  <v-form ref="refVForm" @submit.prevent="onFormSubmit">
+  <AlertNotification
+    :form-success-message="formAction.formSuccessMessage"
+    :form-error-message="formAction.formErrorMessage"
+  >
+  </AlertNotification>
+
+  <v-form class="mt-5" ref="refVForm" @submit.prevent="onFormSubmit">
     <v-row>
       <v-col cols="12" sm="6">
         <v-text-field
@@ -107,7 +142,14 @@ const onFormSubmit = () => {
       </v-col>
     </v-row>
 
-    <v-btn class="mt-2" type="submit" color="deep-orange" prepend-icon="mdi-account-plus" block
+    <v-btn
+      class="mt-2"
+      type="submit"
+      color="deep-orange"
+      prepend-icon="mdi-account-plus"
+      block
+      :disable="formAction.formProccess"
+      :loading="formAction.formProccess"
       >Register</v-btn
     >
   </v-form>
