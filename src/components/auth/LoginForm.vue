@@ -54,6 +54,20 @@ const onFormSubmit = () => {
       :rules="[requiredValidator]"
     ></v-text-field>
 
+    <v-text-field
+      v-model="formData.password"
+      :append-inner-icon="isPasswordVisible ? 'mdi-eye-off' : 'mdi-eye'"
+      :type="isPasswordVisible ? 'text' : 'password'"
+      density="compact"
+      placeholder="Enter your password"
+      prepend-inner-icon="mdi-lock-outline"
+      label="Password"
+      outlined
+      dense
+      @click:append-inner="isPasswordVisible = !isPasswordVisible"
+      :rules="[requiredValidator]"
+    ></v-text-field>
+
     <v-btn class="mt-2" color="deep-orange" type="submit" prepend-icon="mdi-login" block
       >Login</v-btn
     >
