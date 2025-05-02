@@ -16,28 +16,28 @@ const isPasswordVisible = ref(false)
   ></AlertNotification>
 
   <v-form ref="refVForm" @submit.prevent="onFormSubmit">
-    <v-row dense>
-      <v-col cols="12">
-        <v-text-field
-          v-model="formData.email"
-          label="Email"
-          prepend-inner-icon="mdi-email-outline"
-          :rules="[requiredValidator, emailValidator]"
-        ></v-text-field>
-      </v-col>
+    <v-text-field
+      v-model="formData.email"
+      :rules="[requiredValidator, emailValidator]"
+      density="compact"
+      placeholder="Email address"
+      prepend-inner-icon="mdi-email-outline"
+      label="Email"
+      outlined
+      dense
+    ></v-text-field>
 
-      <v-col cols="12">
-        <v-text-field
-          v-model="formData.password"
-          prepend-inner-icon="mdi-lock-outline"
-          label="Password"
-          :type="isPasswordVisible ? 'text' : 'password'"
-          :append-inner-icon="isPasswordVisible ? 'mdi-eye-off' : 'mdi-eye'"
-          @click:append-inner="isPasswordVisible = !isPasswordVisible"
-          :rules="[requiredValidator]"
-        ></v-text-field>
-      </v-col>
-    </v-row>
+    <v-col cols="12">
+      <v-text-field
+        v-model="formData.password"
+        prepend-inner-icon="mdi-lock-outline"
+        label="Password"
+        :type="isPasswordVisible ? 'text' : 'password'"
+        :append-inner-icon="isPasswordVisible ? 'mdi-eye-off' : 'mdi-eye'"
+        @click:append-inner="isPasswordVisible = !isPasswordVisible"
+        :rules="[requiredValidator]"
+      ></v-text-field>
+    </v-col>
 
     <v-btn
       class="mt-2"
